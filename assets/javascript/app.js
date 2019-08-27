@@ -49,9 +49,11 @@ $("#addSchedule").on("click", function(){
 });
 
 database.ref().on("child_added", function (snapshot) {
+  var fireID = snapshot.key;
   var fireData = snapshot.val();
   var timeFirst = fireData.first_train; // time: display time, t: calc time
   var timeFrequency = fireData.frequency;
+
   
   //Convert time of first train 
   var tFirstConverter = moment(timeFirst, "HH:mm")
@@ -67,16 +69,36 @@ database.ref().on("child_added", function (snapshot) {
   var tArrival = moment().add(tMinuteTillArrival, "minutes");
   var timeArrival = moment(tArrival).format("HH:mm");
 
-  //Update html table
+  //Create remove button
+  var trashIcon = $("<button>").addClass("btn remove-btn").attr("trainID", fireID);
+  trashIcon.append("<i class = 'fa fa-trash' aria-hidden = 'true'></i>");
+
+  //Update html tableto
   var tableRow = $("<tr>").append([
     $("<td>").text(fireData.name),
     $("<td>").text(fireData.destination),
     $("<td>").text(fireData.frequency),
     $("<td>").text(timeArrival),
-    $("<td>").text(tMinuteTillArrival)
+    $("<td>").text(tMinuteTillArrival),
+    $("<td>").html(trashIcon)
   ]);
-
   $("#newTrain").append(tableRow);
-});
+
+  // TODO: Research to update time arrival every minute
+})
+
+//Button remove train schedule
+$(document).on("click", ".remove-btn", function (){
+  event.preventDefault();
+  //Find all key values
+  var trainKey = $(this).attr("trainID");
+  var trainVal = database.ref(trainKey);
+
+  //Remove from Firebase
+  trainVal.remove();
+
+  //Remove from HTML
+  $(this).parent().parent().remove();
+})
 
 
