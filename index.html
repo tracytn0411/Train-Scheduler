@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Link reboot CSS-->
+    <link rel="stylesheet" href="assets/css/reboot.css">
+    <!--Link Bootstrap 4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Link Tracy CSS-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <title>Train Scheduler</title>
+</head>
+<body>
+  <header class="jumbotron jumbotron-fluid">
+    <div class="container mt-5 py-5">
+      <h1>Train Scheduler</h1>
+      <p class="lead">choo choo Train</p>
+      <h4>Current Time: <span id="currentTime"></span></h4>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="row">
+
+      <!--Left column: Train Schedule Table-->
+      <article class="col-lg-9">
+        <div class="card">
+          <h3 class="card-header">Train Schedule</h3>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Train Name</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">Next Arrival</th>
+                  <th scope="col">Minutes Away</th>
+                </tr>
+              </thead>
+              <!--javascript insertion-->
+              <tbody id="newTrain"></tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    
+      <!--Right column: User Input Table-->
+      <article class="col-lg-3">
+        <div class="card">
+          <h3 class="card-header">Add Train</h3>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label for="inputTrainName">Train Name</label>
+                  <input type="text" class="form-control" id="inputTrainName">
+                </div>
+                <div class="form-group">
+                  <label for="inputDestination">Destination</label>
+                  <input type="text" class="form-control" id="inputDestination">
+                </div>
+                <div class="form-group">
+                  <label for="inputFirstTrain">First Train Time</label>
+                  <input type="time" class="form-control" id="inputFirstTrain">
+                </div>
+                <div class="form-group">
+                  <label for="inputFrequency">Frequency (min)</label>
+                  <input type="number" class="form-control" id="inputFrequency">
+                </div>
+                <button class="btn btn-secondary" id="addSchedule" type="submit">Add to schedule</button>
+              </form>
+            </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+<!--===========================SCRIPT=======================================-->
+
+  <!--!Slim version of jquery does not support ajax calling-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--Moment.js-->
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.18.1/min/moment.min.js"></script>
+
+  <!--The core Firebase JS SDK-->
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
+  
+  <!--Bootstrap JS-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+
+  <!--Tracy JS-->
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+</html>
