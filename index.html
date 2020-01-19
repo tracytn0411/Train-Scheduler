@@ -1,104 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!--Link reboot CSS-->
-    <link rel="stylesheet" href="assets/css/reboot.css">
+    <!-- <link rel="stylesheet" href="assets/css/reboot.css"> -->
     <!--Link Font Awesome-->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!--Link Bootstrap 4-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
     <!--Link Tracy CSS-->
-    <link rel="stylesheet" href="assets/css/style.css">
-    
+    <link rel="stylesheet" href="assets/css/style.css" />
+
     <title>Train Scheduler</title>
-</head>
-<body>
-  <header class="jumbotron jumbotron-fluid">
-    <div class="container mt-5 py-5">
-      <h1>Train Scheduler</h1>
-      <p class="lead">choo choo Train</p>
-      <h4>Current Time: <span id="currentTime"></span></h4>
-    </div>
-  </header>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 class="display-4">Train Scheduler</h1>
+      <p class="lead d-none d-md-block">
+        Organize all your train schedules in one place and never
+        be late again!
+      </p>
+      <hr class="my-4" />
+      <div class="row">
+        <h3 class="col-6 pl-5" id="currentTime"></h3>
 
-  <main class="container">
-    <section class="row">
-
-      <!--Left column: Train Schedule Table-->
-      <article class="col-lg-9">
-        <div class="card">
-          <h3 class="card-header">Train Schedule</h3>
-          <div class="card-body">
-            <table class="table table-hover">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Train Name</th>
-                  <th scope="col">Destination</th>
-                  <th scope="col">Frequency</th>
-                  <th scope="col">Next Arrival</th>
-                  <th scope="col">Minutes Away</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <!--javascript insertion-->
-              <tbody id="newTrain"></tbody>
-            </table>
-          </div>
+        <div class="col-6 text-right">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#trainModal"
+          >
+            + ADD TRAIN
+          </button>
         </div>
-      </article>
-    
-      <!--Right column: User Input Table-->
-      <article class="col-lg-3">
-        <div class="card">
-          <h3 class="card-header">Add Train</h3>
-            <div class="card-body">
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="trainModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="trainModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="trainModalLabel">
+                  Add Train
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
               <form>
-                <div class="form-group">
-                  <label for="inputTrainName">Train Name</label>
-                  <input type="text" class="form-control" id="inputTrainName">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="inputTrainName">Train Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputTrainName"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="inputDestination">Destination</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputDestination"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="inputFirstTrain">First Train Time</label>
+                    <input
+                      type="time"
+                      class="form-control"
+                      id="inputFirstTrain"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="inputFrequency">Frequency (min)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="inputFrequency"
+                    />
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputDestination">Destination</label>
-                  <input type="text" class="form-control" id="inputDestination">
+                <div class="modal-footer">
+                  <button
+                    class="btn btn-secondary"
+                    id="addSchedule"
+                    type="submit"
+                  >
+                    Add to schedule
+                  </button>
                 </div>
-                <div class="form-group">
-                  <label for="inputFirstTrain">First Train Time</label>
-                  <input type="time" class="form-control" id="inputFirstTrain">
-                </div>
-                <div class="form-group">
-                  <label for="inputFrequency">Frequency (min)</label>
-                  <input type="number" class="form-control" id="inputFrequency">
-                </div>
-                <button class="btn btn-secondary" id="addSchedule" type="submit">Add to schedule</button>
               </form>
             </div>
+          </div>
         </div>
-      </article>
+      </div>
+    </div>
 
-    </section>
-  </main>
+    <main class="container">
+      <!--Section for medium and up viewport: Train Schedule Table-->
+      <section class="md-up-viewport">
+        <table class="table d-none d-md-table">
+          <thead class="">
+            <tr class="d-none d-md-table-row">
+              <th scope="col">TRAIN</th>
+              <th scope="col">DESTINATION</th>
+              <th scope="col">FREQUENCY</th>
+              <th scope="col">NEXT ARIVAL</th>
+              <th scope="col">MINUTES AWAY</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--javascript insertion-->
 
-<!--===========================SCRIPT=======================================-->
+          <tbody id="newTrain"></tbody>
+        </table>
+      </section>
+      <!--Section for small and below viewport: Train Schedule Card-->
 
-  <!--!Slim version of jquery does not support ajax calling-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <section class="sm-below-viewport d-md-none" id="trainCard"></section>
+    </main>
 
-  <!--Moment.js-->
-  <script src="https://cdn.jsdelivr.net/npm/moment@2.18.1/min/moment.min.js"></script>
+    <!--===========================SCRIPT=======================================-->
 
-  <!--The core Firebase JS SDK-->
-  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
-  
-  <!--Bootstrap JS-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-  </script>
+    <!--!Slim version of jquery does not support ajax calling-->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
 
-  <!--Tracy JS-->
-  <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <!--Moment.js-->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.18.1/min/moment.min.js"></script>
 
-</body>
+    <!--The core Firebase JS SDK-->
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
+
+    <!--Bootstrap JS-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Tracy JS-->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+  </body>
 </html>

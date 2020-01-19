@@ -1,7 +1,85 @@
-.jumbotron {
-  background-image: url(../images/SF\ Train.jpg);
-  background-attachment: fixed;
-  background-size: contain;
-  background-position: top;
-  background-repeat: no-repeat;
+body,
+html {
+  height: 100%;
 }
+
+body {
+  font-size: 16px;
+}
+
+@media (max-width: 767.98px) {
+  body {
+    font-size: 14px;
+  }
+  .display-4 {
+   font-size: 2rem;
+  }
+}
+/* body {
+  background-image: url(../images/Train\ Timetable.jpeg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left center;
+} */
+
+@font-face {
+  font-family: "Digital-7-mono";
+  src: url(../fonts/digital-7\ \(mono\).ttf);
+}
+
+
+/*Left Table*/
+/* #leftTable .card-header {
+  background-color: rgb(19, 19, 19);
+} */
+
+/* #leftTable .card-body {
+  border: solid 0.25rem rgb(41, 40, 40, 0.616);
+  height: 500px;
+  overflow: scroll;
+} */
+
+#currentTime {
+  font-family: "Digital-7-mono";
+  font-weight: bold;
+  /* background-color: black;
+  color: rgb(148, 228, 0);
+  padding: 1rem;
+  margin: 1rem;
+   */
+}
+
+/* .card {
+  background-color: rgba(41, 40, 40, 0.816);
+} */
+/* #newTrain {
+  background-color: darkslategrey;
+  color: orange;
+  font-family: "Digital-7-mono";
+  font-size: 1.5rem;
+} */
+
+/* #tableHead {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+} */
+
+/* Extra small devices (portrait phones, less than 576px) */
+/* @media (max-width: 575.98px) { ... } */
+
+/*Small devices (landscape phones, 576px and up) */
+/* @media (min-width: 576px) and (max-width: 767.98px) { ... } */
+
+/* Medium devices (tablets, 768px and up) */
+/* @media (min-width: 768px) and (max-width: 991.98px) { ... } */
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    margin-top: 90px;
+  }
+ 
+
+ }
+
+/* Extra large devices (large desktops, 1200px and up) */
